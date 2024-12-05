@@ -118,7 +118,7 @@ gsettings set org.gnome.software \
 
 gsettings set org.gnome.software \
   show-only-free-apps \
-  false
+  true
 
 for number in 1 2 3 4 5 6 7 8 9 ; do
   gsettings set org.gnome.desktop.wm.keybindings \
