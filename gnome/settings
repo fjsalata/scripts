@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
+source /etc/os-release
+
 ##################
 # GNOME Settings #
 ##################
 
-gsettings set org.gnome.desktop.a11y \
-  always-show-universal-access-status \
-  true
-
+#
+# Common
+#
 gsettings set org.gnome.desktop.input-sources \
   xkb-options \
   "['compose:menu', 'lv3:rwin_switch']"
@@ -112,14 +113,6 @@ gsettings set org.gnome.settings-daemon.plugins.power \
   sleep-inactive-ac-type \
   'nothing'
 
-gsettings set org.gnome.software \
-  packaging-format-preference \
-  "['rpm', 'flatpak:fedora-testing', 'flatpak:fedora']"
-
-gsettings set org.gnome.software \
-  show-only-free-apps \
-  true
-
 for number in 1 2 3 4 5 6 7 8 9 ; do
   gsettings set org.gnome.desktop.wm.keybindings \
     switch-to-workspace-${number} \
@@ -131,3 +124,45 @@ for number in 1 2 3 4 5 6 7 8 9 ; do
     switch-to-application-${number} \
     "[]"
 done
+
+#
+# Fedora
+#
+if [ "${NAME}" == "Fedora" ] ; then
+  gsettings set org.gnome.desktop.a11y \
+    always-show-universal-access-status \
+    true
+
+  gsettings set org.gnome.software \
+    packaging-format-preference \
+    "['rpm', 'flatpak:fedora-testing', 'flatpak:fedora']"
+
+  gsettings set org.gnome.software \
+    show-only-free-apps \
+    true
+fi
+
+#
+# Pop!_OS
+#
+if [ "${NAME}" == "Pop!_OS" ] ; then
+  gsettings set org.gnome.shell.extensions.pop-shell \
+    toggle-tiling \
+    "[]"
+
+  gsettings set org.gnome.shell.extensions.pop-shell \
+    focus-down \
+    "['<Super>Down', '<Super>j']"
+
+  gsettings set org.gnome.shell.extensions.pop-shell \
+    focus-left \
+    "['<Super>Left', '<Super>h']"
+
+  gsettings set org.gnome.shell.extensions.pop-shell \
+    focus-right \
+    "['<Super>Right', '<Super>l']"
+
+  gsettings set org.gnome.shell.extensions.pop-shell \
+    focus-up \
+    "['<Super>Up', '<Super>k']"
+fi
