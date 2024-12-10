@@ -128,7 +128,7 @@ done
 #
 # Fedora
 #
-if [ "${NAME}" == "Fedora" ] ; then
+if [ "${NAME}" == "Fedora Linux" ] ; then
   gsettings set org.gnome.desktop.a11y \
     always-show-universal-access-status \
     true
