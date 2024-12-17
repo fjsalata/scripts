@@ -147,10 +147,6 @@ fi
 #
 if [ "${NAME}" == "Pop!_OS" ] ; then
   gsettings set org.gnome.shell.extensions.pop-shell \
-    toggle-tiling \
-    "[]"
-
-  gsettings set org.gnome.shell.extensions.pop-shell \
     focus-down \
     "['<Super>Down', '<Super>j']"
 
