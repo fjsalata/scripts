@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export PASSWORD_STORE_DIR="${HOME}/.authorization"
+/usr/bin/wl-copy --clear
+/usr/bin/pass otp show --clip "otp/${1}"
