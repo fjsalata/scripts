@@ -1,0 +1,17 @@
+# editors
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# local env/secrets
+.env
+.env.*
+secrets/
+*.key
+*.pem
+
+# logs/tmp
+*.log
+tmp/
+out/
