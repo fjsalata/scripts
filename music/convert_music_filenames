@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+music="$1"
+
+cd "${music}"
+
+for artist in * ; do
+  cd "${artist}"
+  newartist=''
+  for album in * ; do
+    cd "${album}"
+    newalbum=$(metaflac --show-tag=ALBUM 01-*.flac  | sed 's/ALBUM=//' | sed 's/\//-/g')
+    if [ -z "${newartist}" ] ; then
+      newartist=$(metaflac --show-tag=ALBUMARTIST 01-*.flac  | sed 's/ALBUMARTIST=//' | sed 's/\//-/g')
+    fi
+    for track in * ; do
+      title=$(metaflac --show-tag=TITLE "${track}"  | sed 's/TITLE=//' | sed 's/\//-/g')
+      tracknumber=$(echo "${track}" | cut -c1-2)
+      mv ${track} "${tracknumber} - ${title}.flac"
+      i=10
+    done
+    cd ..
+    mv ${album} "${newalbum}"
+  done
+  cd ..
+  mv ${artist} "${newartist}"
+done
